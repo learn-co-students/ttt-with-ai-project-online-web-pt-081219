@@ -1,8 +1,7 @@
 class Game 
-  
-  
-  attr_accessor :board, :player_1, :player_2 , :last_who_played, :winner
-  
+
+   attr_accessor :board, :player_1, :player_2 , :last_who_played, :winner
+
   def initialize(player_1= Players::Human.new("X"),player_2= Players::Human.new("O"),board= Board.new )
     @board = board
     @player_1 = player_1
@@ -23,9 +22,8 @@ class Game
     ]
     
     def current_player
-      
-        @board.turn_count % 2 == 0 ? @player_2 : @player_1
-      
+      @board.turn_count % 2 == 0 ? @player_2 : @player_1
+
     end 
     
     def won? 
@@ -37,7 +35,7 @@ class Game
        end
       end
       result == nil ? false : result
-   
+
     end
    
    def draw? 
@@ -49,8 +47,7 @@ class Game
    end
    
  
-   
-   def turn
+  def turn
     
       current_player == player_2 ? past_player = player_1 : past_player = player_2
       if @last_who_played != past_player
@@ -61,19 +58,22 @@ class Game
         
       end 
    
+  end 
+   
+
+   def winner 
+    @board.cells[@winner]  if won?
    end 
    
-   def winner 
-     won? ? champ = @board.cells[won?[0]] : nil 
-     champ
-   end
+
    
    def play 
      while over? == false do 
       turn 
      end  
-     puts "Cat\'s Game!" if draw?
-     puts "Congratulations #{winner}!" if won?
+     
+     puts "Cat\'s Game!" if draw? 
+     puts "Congratulations #{winner}!" if won? 
    end
     
   def start 
