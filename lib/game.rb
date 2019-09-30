@@ -68,7 +68,7 @@ class Game
       turn 
     end 
     if won?
-      puts "Congratulations #{@win_position_1}!"
+      puts "Congratulations #{winner}!"
     else
       puts "Cat's Game!"
     end 

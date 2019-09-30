@@ -47,7 +47,7 @@ class Board
     end 
     
     def valid_move?(input)
-      if input.to_i > 0 && input.to_i < 9 && @cells[input.to_i - 1] == " "
+      if input.to_i > 0 && input.to_i <= 9 && @cells[input.to_i - 1] == " "
         true 
       else 
         false
