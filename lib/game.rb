@@ -49,13 +49,13 @@ class Game
   end 
   
   def turn
-    puts "#{current_player}, please make a move."
+    puts "#{current_player.token}, please make a move."
     input = current_player.move(board)  
     if board.valid_move?(input)
       board.update(input, current_player)
     else 
-      puts "That move was invalid, please make a valid move."
-      input = current_player.move(board)
+      puts "That move was invalid, please make a valid move: #{current_player.move(board)"
+      # input = current_player.move(board)
     end 
   end 
   
