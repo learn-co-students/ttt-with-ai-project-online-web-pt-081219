@@ -13,7 +13,7 @@ class Game
   ]
   
   def initialize(player_1 = Players::Human.new("X"), player_2 = Players::Human.new("O"), board = Board.new)
-      @board = board
+    @board = board
     @player_1 = player_1
     @player_2 = player_2
   end
@@ -27,12 +27,10 @@ class Game
   end 
   
   def won?
-    WIN_COMBINATIONS.any? do |combo|
-     if @board.cells[combo[0]] == @board.cells[combo[1]] && @board.cells[combo[1]] == @board.cells[combo[2]] && @board.taken?(combo[0])
-       return combo 
+    WIN_COMBINATIONS.detect do |combo|
+     @board.cells[combo[0]] == @board.cells[combo[1]] && @board.cells[combo[1]] == @board.cells[combo[2]] && @board.taken?(combo[0] + 1)
      end 
     end
-  end
   
     def draw?
     return true if @board.full? && !won?
@@ -69,15 +67,14 @@ class Game
   end
   
   def play
-    while !over? && !draw?
+    while !over?
       turn
-    end 
+    end
     if won?
       puts "Congratulations #{winner}!"
     elsif draw?
       puts "Cat's Game!"
     end
   end
-
   
 end 
